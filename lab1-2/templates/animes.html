@@ -1,0 +1,14 @@
+{% extends 'main.html' %}
+
+{% block title %}Список аниме{% endblock %}
+
+{% block content %}
+<ul>
+    {% for anime in data.titles %}
+        <li><a href="{% url 'anime_url' anime.id%}">{{ anime.title }}</a> </li>
+        <div>Дата выхода {{ anime.date }}</div>
+    {% empty %}
+        <li>Список пуст</li>
+    {% endfor %}
+</ul>
+{% endblock %}

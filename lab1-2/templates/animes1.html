@@ -1,0 +1,14 @@
+{#{% extends 'main.html' %}#}
+{#{% load static %}#}
+{##}
+{#{% block title %}Список аниме{% endblock %}#}
+{##}
+{#{% block content %}#}
+{#<ul>#}
+{#    {% for anime in data.animes %}#}
+{#       <li><a href="{% url 'anime_url' anime.id %}">{{ anime.name }}</a> </li>#}
+{#    {% empty %}#}
+{#        <li>Список пуст</li>#}
+{#    {% endfor %}#}
+{#</ul>#}
+{#{% endblock %}#}
