@@ -1,0 +1,12 @@
+{% extends 'main.html' %}
+{% load static %}
+
+{% block title %}Anime №{{ data.id }}{% endblock %}
+
+{% block content %}
+    <div>Информация об аниме №{{ data.id }}</div>
+    <link rel="stylesheet" href="{% static data.url %}">
+    <img src="{% static data.url %}" alt="1">
+    <div>Описание: {{ data.descr }}</div>
+    <li><a href="{% url 'main_url' %}">{{ "Back" }}</a> </li>
+{% endblock %}
