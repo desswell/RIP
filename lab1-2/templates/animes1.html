@@ -1,14 +1,18 @@
-{#{% extends 'main.html' %}#}
-{#{% load static %}#}
-{##}
-{#{% block title %}Список аниме{% endblock %}#}
-{##}
-{#{% block content %}#}
-{#<ul>#}
-{#    {% for anime in data.animes %}#}
-{#       <li><a href="{% url 'anime_url' anime.id %}">{{ anime.name }}</a> </li>#}
-{#    {% empty %}#}
-{#        <li>Список пуст</li>#}
-{#    {% endfor %}#}
-{#</ul>#}
-{#{% endblock %}#}
+{% extends 'main.html' %}
+{% load static %}
+
+{% block title %}Список аниме{% endblock %}
+
+{% block content %}
+<ul>
+    {% for anime in data.animes %}
+       <li><a href="{% url 'anime_url' anime.id %}">{{ anime.name }}</a> </li>
+        <form action="{% url 'sendText' anime.id %}" method="post" enctype="multipart/form-data">
+        {% csrf_token %}
+        <input type="submit" value="Удалить">
+        </form>
+    {% empty %}
+        <li>Список пуст</li>
+    {% endfor %}
+</ul>
+{% endblock %}
