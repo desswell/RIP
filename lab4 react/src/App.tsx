@@ -1,13 +1,41 @@
 import React from 'react';
-import {Curses} from './Components/curses'
-import {curses_data} from "./data/curses";
+import {BrowserRouter, Route, Link, Switch} from "react-router-dom";
+import Catalog_curses from "./pages/Catalog_curses";
+import About from "./pages/About";
+import Main_Page from "./pages/main";
+import CurseId from "./pages/pages";
+import Breadcrumbs from "./BreadCrumbs";
+
 
 function App() {
   return (
-  <div className="container mx-auto max-w-2xl pt-5">
-    <Curses curses = {curses_data[0]}/>
-  </div>
-  );
+  <BrowserRouter basename="/">
+    <div className="h-50 p-20">
+      <div className="container text-3xl">
+      <Link to="/">Главная </Link>
+      <Link to="/curses">Курсы </Link>
+      <Link to="/about">О сайте </Link>
+      </div>
+        <div className="text-blue-800">
+            {<Breadcrumbs/>}
+        </div>
+    </div>
+    <Switch>
+        <Route exact path="/">
+          <Main_Page/>
+        </Route>
+        <Route exact path="/curses">
+          <Catalog_curses/>
+        </Route>
+        <Route exact path="/curses/:id">
+            <CurseId/>
+        </Route>
+        <Route path="/about">
+          <About/>
+        </Route>
+    </Switch>
+  </BrowserRouter>
+  )
 }
 
 export default App;
