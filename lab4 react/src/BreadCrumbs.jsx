@@ -1,15 +1,25 @@
 import withBreadcrumbs from 'react-router-breadcrumbs-hoc';
-import {curses_data} from "./data/curses";
 import {NavLink} from "react-router-dom";
+import {UseCurse} from "./hooks/IDCurses";
+
+
+function jojo(match) {
+    const {curse} = UseCurse(match.params.id)
+    return <span>{curse.title}</span>
+}
 
 const DynamicUserBreadcrumb = ({ match }) => (
-    <span>{curses_data[match.params.id - 1].title}</span>
+    <div>
+        {
+            jojo(match)
+        }
+    </div>
 );
 const routes = [
     { path: '/curses/:id', breadcrumb: DynamicUserBreadcrumb },
-    { path: '/about', breadcrumb: 'О нас/' },
-    { path: '/', breadcrumb: 'Главная страница / ' },
-    { path: '/curses', breadcrumb: 'Курсы / ' },
+    { path: '/about', breadcrumb: 'О нас' },
+    { path: '/', breadcrumb: 'Главная страница' },
+    { path: '/curses', breadcrumb: 'Курсы' },
 ];
 
 const Breadcrumbs = ({ breadcrumbs }) => (

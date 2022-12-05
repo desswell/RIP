@@ -4,8 +4,7 @@ export interface ICurses {
     description: string,
     category: string,
     image: string,
-    rating: {
-        rate: number,
-        count: number
-    }
+    price: number,
+    rate: string,
+    count: number
 }

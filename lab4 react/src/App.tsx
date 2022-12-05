@@ -5,18 +5,21 @@ import About from "./pages/About";
 import Main_Page from "./pages/main";
 import CurseId from "./pages/pages";
 import Breadcrumbs from "./BreadCrumbs";
+import "./style css/navbar.css"
+import "./style css/breadscrumbs.css"
+import'axios'
 
 
 function App() {
   return (
   <BrowserRouter basename="/">
-    <div className="h-50 p-20">
-      <div className="container text-3xl">
+    <div className="h-50 p-100">
+      <ul className="menu-main">
       <Link to="/">Главная </Link>
       <Link to="/curses">Курсы </Link>
       <Link to="/about">О сайте </Link>
-      </div>
-        <div className="text-blue-800">
+      </ul>
+        <div className="breadcrumbs">
             {<Breadcrumbs/>}
         </div>
     </div>
