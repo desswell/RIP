@@ -9,7 +9,7 @@ interface IDCurses{
 export function UseCurse(Props: IDCurses) {
     const [curse, setCurse] = useState<ICurses[]>([])
     async function fetchCurse(){
-        const response = await axios.get<ICurses[]>(`http://127.0.0.1:8000/curses/${Props}`)
+        const response = await axios.get<ICurses[]>(`http://127.0.0.1:8000/curses/${Props}/`)
         setCurse(response.data)
     }
     useEffect(() => {

@@ -1,21 +1,20 @@
 import {useEffect, useState} from "react";
 import {ICurses} from "../models/models";
 import axios, {AxiosError} from "axios";
-import {setDataAction, useData} from "../slices/cursesSlice";
+import {setDataAction, useButton, usePrice} from "../slices/cursesSlice";
 import { useDispatch } from "react-redux";
 
 export function UseCurses() {
-    const [curses, setCurses] = useState<ICurses[]>([])
     const [loading, setLoading] = useState(false)
     const [error, setError] = useState('')
     const dispatch = useDispatch()
-    const data = useData()
+    const value = usePrice()
+    const flag = useButton()
     async function fetchCurses() {
         try {
             setError('')
             setLoading(true)
-            const response = await axios.get<ICurses[]>("http://127.0.0.1:8000/curses/")
-            setCurses(response.data)
+            const response = await axios.get<ICurses[]>(`http://127.0.0.1:8000/curses/?price_min=${value[0]}&price_max=${value[1]}`)
             dispatch(setDataAction(response.data))
             setLoading(false)
         } catch (e: unknown){
@@ -26,9 +25,9 @@ export function UseCurses() {
     }
     useEffect(() => {
         fetchCurses()
-
         setLoading(false)
-    }, [])
+    }, [flag])
 
-    return {curses, error, loading}
+
+    return {error, loading}
 }

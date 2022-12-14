@@ -1,3 +1,7 @@
 from django.contrib import admin
+from curses.models import models
 
-# Register your models here.
+
+@admin.register(models.Curses)
+class CursesAdmin(admin.ModelAdmin):
+    list_display = ["title", "image"]

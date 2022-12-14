@@ -5,11 +5,19 @@ import { useSelector } from "react-redux";
 const curseSlice = createSlice({
     name: "curses",
     initialState: {
-        Data: []
+        Data: [],
+        price: [0, 20000],
+        button: true
     },
     reducers: {
         setData(state, {payload}) {
             state.Data = payload
+        },
+        setPrice(state, {payload}) {
+            state.price = payload
+        },
+        setButton(state) {
+            state.button = !state.button
         }
     }
 })
@@ -17,9 +25,16 @@ const curseSlice = createSlice({
 export const useData = () =>
     useSelector((state) => state.curses.Data)
 
+export const usePrice = () =>
+    useSelector((state) => state.curses.price)
+
+export const useButton = () =>
+    useSelector((state) => state.curses.button)
 
 export const {
-    setData: setDataAction
+    setData: setDataAction,
+    setPrice: setPriceAction,
+    setButton: setButtonAction
 } = curseSlice.actions
 
 

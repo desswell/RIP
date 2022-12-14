@@ -1,5 +1,14 @@
 from curses.models.models import Curses, Users, Purchase
 from rest_framework import serializers
+from django_filters import rest_framework as filters
+
+
+class CursesFilter(filters.FilterSet):
+    price = filters.RangeFilter()
+
+    class Meta:
+        model = Curses
+        fields = ['price']
 
 
 class CursesSerializers(serializers.ModelSerializer):

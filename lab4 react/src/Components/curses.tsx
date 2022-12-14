@@ -19,7 +19,11 @@ export function Curses({curse}: CursesProps) {
             <div  className="rounded flex flex-col items-center mb-2"
                   onClick={() => router.push(`/curses/${curse.id}`)}>
                 <p className="py-2 text-2xl">{curse.title}</p>
-                <img src={curse.image} className="w-1/3" alt={curse.title}></img>
+                <img src={curse.image} className="w-1/3" alt={curse.title}>
+                </img>
+            </div>
+            <div className="text-2xl">
+                {curse.price} рублей
             </div>
             <button
                 className={btnClasses.join(' ')}
