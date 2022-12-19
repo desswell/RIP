@@ -6,7 +6,7 @@ const curseSlice = createSlice({
     name: "curses",
     initialState: {
         Data: [],
-        price: [0, 20000],
+        price: [0, 10000000],
         button: true
     },
     reducers: {

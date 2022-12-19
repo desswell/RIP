@@ -20,7 +20,9 @@ const routes = [
     { path: '/about', breadcrumb: 'О нас' },
     { path: '/', breadcrumb: 'Главная страница' },
     { path: '/curses', breadcrumb: 'Курсы' },
-    { path: '/ShCart', breadcrumb: 'Корзина'}
+    { path: '/ShCart', breadcrumb: 'Корзина'},
+    { path: '/SighIn', breadcrumb: 'Вход'},
+    { path: '/registration', breadcrumb: 'Регистрация'}
 ];
 
 const Breadcrumbs = ({ breadcrumbs }) => (

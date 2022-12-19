@@ -10,8 +10,9 @@ import "./style css/navbar.css"
 import "./style css/breadscrumbs.css"
 import'axios'
 import { FaShoppingCart } from "react-icons/fa";
-import { BtnLogIn } from "./Components/UserIn";
-
+// import { BtnLogIn } from "./Components/UserIn";
+import Registration from "./pages/registration";
+import SighIn from './pages/login'
 
 
 function App() {
@@ -22,8 +23,11 @@ function App() {
       <Link to="/">Главная </Link>
       <Link to="/curses">Курсы </Link>
       <Link to="/about">О сайте </Link>
+          {/*<div className="float-right">*/}
+          {/*    <BtnLogIn />*/}
+          {/*</div>*/}
           <div className="float-right">
-              <BtnLogIn />
+              <Link to='/SighIn'> Войти или зарегистрироваться</Link>
           </div>
           <div className="float-right">
           <Link to="/ShCart">
@@ -50,6 +54,12 @@ function App() {
         </Route>
         <Route path="/ShCart">
             <ShoppingCartPage/>
+        </Route>
+        <Route path="/SighIn">
+            <SighIn/>
+        </Route>
+        <Route path="/registration">
+            <Registration/>
         </Route>
     </Switch>
   </BrowserRouter>

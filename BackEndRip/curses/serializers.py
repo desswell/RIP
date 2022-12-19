@@ -1,4 +1,4 @@
-from curses.models.models import Curses, Users, Purchase
+from curses.models.models import Curses, User, Purchase
 from rest_framework import serializers
 from django_filters import rest_framework as filters
 
@@ -19,8 +19,8 @@ class CursesSerializers(serializers.ModelSerializer):
 
 class UsersSerializers(serializers.ModelSerializer):
     class Meta:
-        model = Users
-        fields = ["id", "nickname", "email", "name", "age"]
+        model = User
+        fields = ["id", "username", "email", "name"]
 
 
 class PurchaseSerializers(serializers.ModelSerializer):
