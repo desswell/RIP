@@ -42,7 +42,9 @@
 }
 .menu-main a:hover:before, .menu-main .current:before {left: 0;}
 .menu-main a:hover:after, .menu-main .current:after {right: 0;}
-@media (max-width: 550px) {
+
+
+@media (max-width: 765px) {
     .menu-main {padding-top: 0;}
     .menu-main li {display: block;}
     .menu-main li:after {content: none;}
@@ -58,3 +60,4 @@
     transition: color 500ms ease;
     text-align: right;
 }
+

@@ -5,7 +5,9 @@ import { useSelector } from "react-redux";
 const SCartSlice = createSlice({
     name: "SCart",
     initialState: {
-        Order: []
+        Order: [],
+        isAuth: false,
+        UserId: 1,
     },
     reducers: {
         AddOrder(state, {payload}) {
@@ -13,6 +15,15 @@ const SCartSlice = createSlice({
         },
         DelOrder(state, {payload}){
             state.Order = state.Order.filter(item => item.id !== payload)
+        },
+        ChangeAuth(state){
+            state.isAuth = !state.isAuth
+        },
+        ChangeUserId(state, {payload}){
+            state.UserId = payload
+        },
+        DelAllOrder(state){
+            state.Order = []
         }
     }
 })
@@ -20,10 +31,18 @@ const SCartSlice = createSlice({
 export const useOrder = () =>
     useSelector((state) => state.SCart.Order)
 
+export const useIsAuth = () =>
+    useSelector((state) => state.SCart.isAuth)
+
+export const useUserId = () =>
+    useSelector((state) => state.SCart.UserId)
 
 export const {
     AddOrder: AddOrderAction,
-    DelOrder: DelOrderAction
+    DelOrder: DelOrderAction,
+    ChangeAuth: ChangeAuthAction,
+    ChangeUserId: ChangeUserIdAction,
+    DelAllOrder: DelAllOrderAction,
 } = SCartSlice.actions
 
 

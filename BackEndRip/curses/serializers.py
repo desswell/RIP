@@ -11,6 +11,23 @@ class CursesFilter(filters.FilterSet):
         fields = ['price']
 
 
+class UserFilter(filters.FilterSet):
+    username = filters.CharFilter()
+
+    class Meta:
+        model = User
+        fields = ['username']
+
+
+class PurchaseFilter(filters.FilterSet):
+    id_user = filters.CharFilter()
+    id_curse = filters.CharFilter()
+
+    class Meta:
+        model = Purchase
+        fields = ['id_user', 'id_curse']
+
+
 class CursesSerializers(serializers.ModelSerializer):
     class Meta:
         model = Curses
@@ -20,7 +37,7 @@ class CursesSerializers(serializers.ModelSerializer):
 class UsersSerializers(serializers.ModelSerializer):
     class Meta:
         model = User
-        fields = ["id", "username", "email", "name"]
+        fields = ["id", "username"]
 
 
 class PurchaseSerializers(serializers.ModelSerializer):

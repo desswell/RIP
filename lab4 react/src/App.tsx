@@ -1,45 +1,29 @@
 import React from 'react';
-import {BrowserRouter, Route, Link, Switch} from "react-router-dom";
+import {BrowserRouter, Route, Switch} from "react-router-dom";
 import Catalog_curses from "./pages/Catalog_curses";
 import About from "./pages/About";
 import Main_Page from "./pages/main";
 import CurseId from "./pages/pages";
 import ShoppingCartPage from "./pages/shoppingCartPage";
-import Breadcrumbs from "./BreadCrumbs";
+import UserInfo from "./pages/UserInfo";
 import "./style css/navbar.css"
 import "./style css/breadscrumbs.css"
 import'axios'
-import { FaShoppingCart } from "react-icons/fa";
-// import { BtnLogIn } from "./Components/UserIn";
-import Registration from "./pages/registration";
-import SighIn from './pages/login'
+import {Registration} from "./pages/registration";
+import {AuthPage} from './pages/login'
+import { NavigationBar } from "./Components/navbar";
+import {useDispatch} from "react-redux";
+import {ChangeAuthAction, useIsAuth} from "./slices/shoppingCartSlice";
 
 
 function App() {
-  return (
+    const dispatch = useDispatch()
+    const isAuth = useIsAuth()
+    if (localStorage.getItem('login') !== null && !isAuth) dispatch(ChangeAuthAction)
+    return (
   <BrowserRouter basename="/">
-    <div className="h-50 p-100">
-      <ul className="menu-main">
-      <Link to="/">Главная </Link>
-      <Link to="/curses">Курсы </Link>
-      <Link to="/about">О сайте </Link>
-          {/*<div className="float-right">*/}
-          {/*    <BtnLogIn />*/}
-          {/*</div>*/}
-          <div className="float-right">
-              <Link to='/SighIn'> Войти или зарегистрироваться</Link>
-          </div>
-          <div className="float-right">
-          <Link to="/ShCart">
-          <FaShoppingCart size={20}/>
-          </Link>
-          </div>
-      </ul>
-        <div className="breadcrumbs">
-            {<Breadcrumbs/>}
-        </div>
-    </div>
-    <Switch>
+    <NavigationBar/>
+    <Route>
         <Route exact path="/">
           <Main_Page/>
         </Route>
@@ -56,12 +40,15 @@ function App() {
             <ShoppingCartPage/>
         </Route>
         <Route path="/SighIn">
-            <SighIn/>
+            <AuthPage/>
         </Route>
         <Route path="/registration">
             <Registration/>
         </Route>
-    </Switch>
+        <Route path="/userinfo">
+            <UserInfo/>
+        </Route>
+    </Route>
   </BrowserRouter>
   )
 }

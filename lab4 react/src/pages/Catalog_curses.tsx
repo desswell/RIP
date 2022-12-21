@@ -3,7 +3,7 @@ import { Curses } from "../Components/curses"
 import { UseCurses } from '../hooks/curses'
 import { Loader } from "../Components/Loader";
 import { ErrorMessage } from "../Components/ErrorMessage";
-import {setButtonAction, setDataAction, setPriceAction, useData} from "../slices/cursesSlice";
+import {setButtonAction, setPriceAction, useData} from "../slices/cursesSlice";
 import { ICurses } from '../models/models';
 import '../style css/SearchBar.css'
 import Slider from '@mui/material/Slider';

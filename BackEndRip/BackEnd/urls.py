@@ -1,7 +1,6 @@
 from django.conf import settings
 from django.conf.urls.static import static
 from django.contrib import admin
-from rest_framework_simplejwt.views import TokenObtainPairView, TokenRefreshView, TokenVerifyView
 
 from curses import views as curses_view
 from django.urls import include, path
@@ -16,12 +15,10 @@ urlpatterns = [
     path('', include(router.urls)),
     path('api-auth/', include('rest_framework.urls', namespace='rest_framework')),
     path('admin/', admin.site.urls),
-    path('api/account/create/', curses_view.create_user, name="create_user"),
-    # path('api/logout/', curses_view.logout_view, name="logout"),
+    path('api/Purchase/add', curses_view.create_purchase, name='create-purchase'),
     path('api/authorize/', curses_view.AuthView.as_view(), name="auth"),
-    path('api/token/', TokenObtainPairView.as_view(), name='token_obtain_pair'),
-    path('api/token/refresh/', TokenRefreshView.as_view(), name='token_refresh'),
-    path('api/token/verify/', TokenVerifyView.as_view(), name='token_verify'),
+    path('api/user/create', curses_view.create_user, name="create-user"),
+    path('api/logout/', curses_view.logout, name="logout"),
 ]
 
 if settings.DEBUG:
