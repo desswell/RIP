@@ -43,4 +43,4 @@ class UsersSerializers(serializers.ModelSerializer):
 class PurchaseSerializers(serializers.ModelSerializer):
     class Meta:
         model = Purchase
-        fields = ["id", "id_user", "id_curse", "date_purchase", "sum"]
+        fields = ["id", "id_user", "id_curse", "date_purchase", "sum", "status"]

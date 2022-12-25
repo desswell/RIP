@@ -20,6 +20,7 @@ function App() {
     const dispatch = useDispatch()
     const isAuth = useIsAuth()
     if (localStorage.getItem('login') !== null && !isAuth) dispatch(ChangeAuthAction)
+    console.log(isAuth)
     return (
   <BrowserRouter basename="/">
     <NavigationBar/>

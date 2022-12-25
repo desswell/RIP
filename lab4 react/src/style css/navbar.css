@@ -5,6 +5,7 @@
     padding: 25px 10px 5px;
     text-align: left;
     background: white;
+    /*display: flex;*/
 }
 .menu-main li {display: inline-block;}
 .menu-main li:after {
@@ -60,4 +61,3 @@
     transition: color 500ms ease;
     text-align: right;
 }
-

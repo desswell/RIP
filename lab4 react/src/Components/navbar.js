@@ -23,7 +23,7 @@ export function NavigationBar() {
             {<Breadcrumbs/>}
         </div>
     </div> :
-            <div className="h-50 p-100">
+            <div className="h-50 p-100 flex-auto">
                 <ul className="menu-main">
                     <Link to="/">Главная </Link>
                     <Link to="/curses">Курсы </Link>
@@ -39,7 +39,6 @@ export function NavigationBar() {
                             <FaShoppingCart size={20}/>
                         </Link>
                     </div>
-
                 </ul>
                 <div className="breadcrumbs">
                     {<Breadcrumbs/>}

@@ -19,6 +19,8 @@ urlpatterns = [
     path('api/authorize/', curses_view.AuthView.as_view(), name="auth"),
     path('api/user/create', curses_view.create_user, name="create-user"),
     path('api/logout/', curses_view.logout, name="logout"),
+    path('api/Purchase/delete', curses_view.deletePurchase, name='delete-purchase'),
+    path('api/Purchase/changeStatus', curses_view.changePurchase, name='change-purchase')
 ]
 
 if settings.DEBUG:
