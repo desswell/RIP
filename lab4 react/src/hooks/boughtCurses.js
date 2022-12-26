@@ -14,5 +14,6 @@ export function BoughtCurses () {
                 setData(response.data[0]["status"])
             }
         })
+    console.log(data)
     return {flag, data}
 }

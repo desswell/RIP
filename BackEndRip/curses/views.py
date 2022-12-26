@@ -152,7 +152,8 @@ def changePurchase(request):
             Purchase.objects.filter(id_user=id_user, id_curse=id_curse).update(status=status, date_status=current_date)
             response = Response("{\"status\": \"ok\"}", content_type="json")
         else:
-            response = Response("{\"status\": \"access denied\"}", content_type="json")
+            Purchase.objects.filter(id_user=user.id, id_curse=id_curse).update(status=status, date_status=current_date)
+            response = Response("{\"status\": \"ok\"}", content_type="json")
     else:
         response = Response("{\"status\": \"You have to logIn\"}", content_type="json")
     return response

@@ -41,9 +41,10 @@ const CurseId = () => {
                 }
             })
     }
+    const status = "Начат"
     const user_id = useUserId()
     const HandleClickStatus = () => {
-        fetch('/api/Purchase/changeStatus/',{method : "PUT", body: JSON.stringify({"id_curse": params.id, "id_user": user_id, "status": "Начат"})})
+        fetch('/api/Purchase/changeStatus/',{method : "PUT", body: JSON.stringify({"id_curse": params.id, "id_user": user_id, "status": status})})
             .then((res) => res.json())
             .then((data) => {
                 if(JSON.parse(data)["status"] === "ok"){
@@ -83,12 +84,12 @@ const CurseId = () => {
             {!isAuth && <div className="text-2xl align-middle">
                 <Link to="/SighIn">Сначала войдите</Link>
             </div>}
-            {flag && data==="Куплен" && <div className="text-2xl">
+            {flag && data === "Куплен" && <div className="text-2xl">
                 <button className="buttonStyleUpload" onClick={HandleClickStatus}>
                     Начать просмотр курсов
                 </button>
             </div>}
-            {data==="Начат" && <div className="text-2xl">Вы начали курс</div>}
+            {flag && data === "Начат" && <div className="text-2xl">Вы начали курс</div>}
             {is_superUser === 1 && <button className="border-y-amber-300 border text-2xl" onClick={() => setModalActive(true)}>
                 Изменить
             </button>}
