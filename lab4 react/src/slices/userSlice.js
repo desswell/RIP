@@ -5,7 +5,8 @@ import { useSelector } from "react-redux";
 const UserSlice = createSlice({
     name: "Users",
     initialState: {
-        active: false
+        active: false,
+        cursesPerUser: []
     },
     reducers: {
         SetActive(state) {
@@ -13,6 +14,9 @@ const UserSlice = createSlice({
         },
         DelActive(state){
             state.active = false
+        },
+        SetCurses(state, {payload}) {
+            state.cursesPerUser = payload
         }
     }
 })
@@ -20,10 +24,13 @@ const UserSlice = createSlice({
 export const useUsers = () =>
     useSelector((state) => state.Users.active)
 
+export const useCursesPerUser = () =>
+    useSelector((state) => state.Users.cursesPerUser)
 
 export const {
     SetActive: SetActiveAction,
-    DelActive: DelActiveAction
+    DelActive: DelActiveAction,
+    SetCurses: SetCursesAction
 } = UserSlice.actions
 
 export default UserSlice.reducer

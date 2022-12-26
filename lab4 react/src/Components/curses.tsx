@@ -1,6 +1,7 @@
 import React, {useState} from 'react'
 import {ICurses} from "../models/models";
 import {useHistory} from 'react-router-dom';
+import {ChangeAuthAction, useIsAuth} from "../slices/shoppingCartSlice";
 
 
 interface CursesProps {

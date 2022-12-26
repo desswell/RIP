@@ -1,5 +1,5 @@
 import React from 'react';
-import {BrowserRouter, Route, Switch} from "react-router-dom";
+import {BrowserRouter, Route} from "react-router-dom";
 import Catalog_curses from "./pages/Catalog_curses";
 import About from "./pages/About";
 import Main_Page from "./pages/main";
@@ -12,15 +12,10 @@ import'axios'
 import {Registration} from "./pages/registration";
 import {AuthPage} from './pages/login'
 import { NavigationBar } from "./Components/navbar";
-import {useDispatch} from "react-redux";
-import {ChangeAuthAction, useIsAuth} from "./slices/shoppingCartSlice";
+import StateOrder from "./pages/stateOrder";
 
 
 function App() {
-    const dispatch = useDispatch()
-    const isAuth = useIsAuth()
-    if (localStorage.getItem('login') !== null && !isAuth) dispatch(ChangeAuthAction)
-    console.log(isAuth)
     return (
   <BrowserRouter basename="/">
     <NavigationBar/>
@@ -48,6 +43,9 @@ function App() {
         </Route>
         <Route path="/userinfo">
             <UserInfo/>
+        </Route>
+        <Route path="/stateOrder">
+         <StateOrder/>
         </Route>
     </Route>
   </BrowserRouter>

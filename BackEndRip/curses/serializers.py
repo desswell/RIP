@@ -37,10 +37,10 @@ class CursesSerializers(serializers.ModelSerializer):
 class UsersSerializers(serializers.ModelSerializer):
     class Meta:
         model = User
-        fields = ["id", "username"]
+        fields = ["id", "username", "is_staff"]
 
 
 class PurchaseSerializers(serializers.ModelSerializer):
     class Meta:
         model = Purchase
-        fields = ["id", "id_user", "id_curse", "date_purchase", "sum", "status"]
+        fields = ["id", "id_user", "id_curse", "date_purchase", "sum", "status", "date_status"]

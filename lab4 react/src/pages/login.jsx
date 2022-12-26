@@ -1,6 +1,4 @@
 import React, { useState} from 'react';
-
-
 import '../style css/LogIn.css';
 import { Link, useHistory } from 'react-router-dom';
 import { useDispatch } from 'react-redux';

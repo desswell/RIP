@@ -7,7 +7,7 @@ const SCartSlice = createSlice({
     initialState: {
         Order: [],
         isAuth: false,
-        UserId: 1,
+        UserId: 0,
     },
     reducers: {
         AddOrder(state, {payload}) {

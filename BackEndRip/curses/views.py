@@ -61,14 +61,35 @@ def create_purchase(request):
     ssid = request.COOKIES.get("session_cookie")
     curse_id = data["id_curse"]
     sum = data["sum"]
-    status = data['status']
+    status = "Куплен"
     if ssid is not None:
         user = User.objects.get(username=session_storage.get(request.COOKIES.get('session_cookie')).decode())
-        p = Purchase.objects.create(id_curse=curse_id, id_user=user.id, sum=sum, status=status)
+        Purchase.objects.create(id_curse=curse_id, id_user=user.id, sum=sum, status=status)
         response = Response("{\"status\": \"ok\"}", content_type="json")
         return response
     else:
         return HttpResponse("{\"status\": \"error\", \"error\": \"haven't been added to purchase\"}")
+
+
+@api_view(["POST"])
+def create_curses(request):
+    data = json.loads(request.body)
+    title = data["title"]
+    price = data["price"]
+    image = data['image']
+    description = data["description"]
+    ssid = request.COOKIES.get("session_cookie")
+    if ssid is not None:
+        user = User.objects.get(username=session_storage.get(request.COOKIES.get('session_cookie')).decode())
+        if user.is_superuser:
+            Curses.objects.create(title=title, description=description, price=price, image=image, category="JS",
+                                  rate=4.3, count=200)
+            response = Response("{\"status\": \"ok\"}", content_type="json")
+        else:
+            response = Response("{\"status\": \"access denied\"}", content_type="json")
+    else:
+        response = Response("{\"status\": \"you have to logIn\"}", content_type="json")
+    return response
 
 
 @api_view(["GET"])
@@ -91,6 +112,24 @@ def deletePurchase(request):
         user = User.objects.get(username=session_storage.get(ssid).decode())
         if user.is_superuser:
             Purchase.objects.filter(id_curse=curse_id, id_user=user_id).delete()
+            response = Response("{\"status\": \"ok\"}", content_type="json")
+        else:
+            response = Response("{\"status\": \"access denied\"}", content_type="json")
+    else:
+        response = Response("{\"status\": \"You have to logIn\"}", content_type="json")
+    return response
+
+
+@api_view(["DELETE"])
+def deleteCurses(request):
+    data = json.loads(request.body)
+    curse_id = data['id_curse']
+    ssid = request.COOKIES.get("session_cookie")
+    print(ssid)
+    if ssid is not None:
+        user = User.objects.get(username=session_storage.get(ssid).decode())
+        if user.is_superuser:
+            Curses.objects.filter(id=curse_id).delete()
             response = Response("{\"status\": \"ok\"}", content_type="json")
         else:
             response = Response("{\"status\": \"access denied\"}", content_type="json")
@@ -126,21 +165,31 @@ def changeCurses(request):
     id = data["id"]
     title = data["title"]
     description = data["description"]
-    category = data["category"]
     price = data["price"]
-    rate = data["rate"]
-    count = data["count"]
     if ssid is not None:
         user = User.objects.get(username=session_storage.get(ssid).decode())
-        if user.is_superuser:
-            Curses.objects.filter(id=id).update(title=title, description=description, category=category,
-                                                price=price, rate=rate, count=count)
+        if user.is_superuser == 1:
+            Curses.objects.filter(id=id).update(title=title, description=description, price=int(price))
             response = Response("{\"status\": \"ok\"}", content_type="json")
         else:
             response = Response("{\"status\": \"access denied\"}", content_type="json")
     else:
         response = Response("{\"status\": \"you have to logIn\"}", content_type="json")
     return response
+
+
+# @api_view(["GET"])
+# def getUserCurses(request):
+#     ssid = request.COOKIES.get("session_cookie")
+#     if ssid is not None:
+#         user = User.objects.get(username=session_storage.get(ssid).decode())
+#         p = Purchase.objects.filter(id_user=user.id)
+#         queryset = []
+#         for i in p:
+#             queryset.append(Curses.objects.get(id=i.id_curse))
+#         return Response(queryset, content_type="json")
+#     else:
+#         return Response("{\"status\": \"you have to logIn\"}", content_type="json")
 
 
 class AuthView(APIView):

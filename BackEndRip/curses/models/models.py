@@ -59,5 +59,5 @@ class Purchase(models.Model):
     id_curse = models.IntegerField(verbose_name="ID курса, который купил пользователь")
     date_purchase = models.DateField(auto_now=True, verbose_name="Дата покупки")
     sum = models.IntegerField(verbose_name="Сумма покупки")
-    status = models.CharField(max_length=20, verbose_name="Статус", default='')
-    date_status = models.DateField(verbose_name="Время статуса", default="2006-10-25")
+    status = models.CharField(max_length=20, verbose_name="Статус", default='Куплен')
+    date_status = models.DateField(verbose_name="Время статуса", auto_now=True)

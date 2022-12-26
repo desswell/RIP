@@ -15,12 +15,17 @@ urlpatterns = [
     path('', include(router.urls)),
     path('api-auth/', include('rest_framework.urls', namespace='rest_framework')),
     path('admin/', admin.site.urls),
-    path('api/Purchase/add', curses_view.create_purchase, name='create-purchase'),
+    path('api/Purchase/add/', curses_view.create_purchase, name='create-purchase'),
+    path('api/curses/change/', curses_view.changeCurses, name="change-curses"),
+    path('api/curses/delete/', curses_view.deleteCurses, name="delete-curses"),
+    path('api/curses/upload/', curses_view.create_curses),
+    # path('api/curses/getForUser/', curses_view.getUserCurses),
     path('api/authorize/', curses_view.AuthView.as_view(), name="auth"),
     path('api/user/create', curses_view.create_user, name="create-user"),
     path('api/logout/', curses_view.logout, name="logout"),
-    path('api/Purchase/delete', curses_view.deletePurchase, name='delete-purchase'),
-    path('api/Purchase/changeStatus', curses_view.changePurchase, name='change-purchase')
+    path('api/Purchase/delete/', curses_view.deletePurchase, name='delete-purchase'),
+    path('api/Purchase/changeStatus/', curses_view.changePurchase, name='change-purchase'),
+    path('api/curses/delete', curses_view.deleteCurses, name="delete-curses")
 ]
 
 if settings.DEBUG:

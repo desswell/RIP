@@ -19,7 +19,7 @@ const ShoppingCartPage = () => {
     const price_sum = price.reduce((partialSum: any, a: any) => partialSum + a, 0)
     GetUser()
     const HandleClick = () => {
-        fetch('/api/Purchase/add',{
+        fetch('/api/Purchase/add/',{
             method : "POST",
             body: JSON.stringify({id_curse: curse_id[0], sum: price_sum})
         })
@@ -30,7 +30,7 @@ const ShoppingCartPage = () => {
     };
     return(
         <div className="flex-1">
-            {emptyCart && <p>
+            {emptyCart && <p className="text-4xl align-baseline flex-auto">
                 Корзина пуста
             </p>}
             {!emptyCart && data.map((curse: ICurses) => <ShCart curse={curse} key={curse.id}/>)}

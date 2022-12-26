@@ -8,6 +8,8 @@ import { ICurses } from '../models/models';
 import '../style css/SearchBar.css'
 import Slider from '@mui/material/Slider';
 import {useDispatch} from "react-redux";
+import Modal from "../Components/Modal";
+import '../style css/LogIn.css'
 
 function valuetext(value: number) {
     return `${value} Rub`;
@@ -15,8 +17,14 @@ function valuetext(value: number) {
 
 function Catalog_curses() {
     const {error, loading} = UseCurses()
+    const isSuperUser = localStorage.getItem('login') === "admin"
     const data = useData()
+    const [modalActive, setModalActive] = useState(false)
     const dispatch = useDispatch()
+    const [title, setTitle] = useState('')
+    const [price, setPrice] = useState("0")
+    const [description, setDescription] = useState('')
+    const [image, setImage] = useState('')
     const [value1, setValue1] = useState('')
     const searchCurses = data.filter((curse: ICurses) => {
         return curse.title.toLowerCase().includes(value1.toLowerCase())
@@ -29,6 +37,16 @@ function Catalog_curses() {
         setValue(newValue as number[]);
         dispatch( setPriceAction(value) )
     };
+
+    const HandleChangeUpload = () => {
+        fetch('/api/curses/upload/', {method: "POST", body: JSON.stringify({"title": title, "price": price, "description": description, "image": image})})
+            .then(response => response.json())
+            .then(data => {
+                if (JSON.parse(data)["status"] === "ok") {
+                    setModalActive(false)
+                }
+            })
+    }
     return (
         <div className="container mx-auto max-w-2xl pt-5">
             <div className="box" >
@@ -52,6 +70,28 @@ function Catalog_curses() {
                 }}>
                     Фильтровать
                 </button>
+                <br/>
+                <Modal active={modalActive} setActive={setModalActive}>
+                    <form action="">
+                        <input onChange={(event) => setTitle(event.target.value)}
+                               type="text" className='InputField' placeholder="Название"></input>
+                        <input onChange={(event) => setPrice(event.target.value)}
+                               type="text" className='InputField' placeholder="Цена"></input>
+                        <input onChange={(event) => setDescription(event.target.value)}
+                               type="text" className='InputField' placeholder="Описание"></input>
+                        <div className="m-3">
+                            <label className="mx-3">Выберите изображение </label>
+                            <input className="d-none" type="file" onChange={(event) => {setImage(event.target.value)}} />
+                        </div>
+                        <button className="buttonStyleUpload" onClick={HandleChangeUpload}>
+                            Добавить
+                        </button>
+                    </form>
+                </Modal>
+                {isSuperUser && <button className="bg-yellow-200" onClick={() => {
+                    setModalActive(true)
+                }
+                }> Добавить </button>}
             </div>
             { error && <ErrorMessage error={error}/> }
             { loading && <Loader/> }

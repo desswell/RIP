@@ -31,6 +31,9 @@ export function NavigationBar() {
                         <Link to="/userinfo">
                         Аккаунт
                         </Link>
+                    {login === "admin" && <Link to="/stateOrder">
+                        Состояния заказов
+                    </Link>}
                     <div className="float-right text-2xl text-red-500">
                         <LogOut/>
                     </div>

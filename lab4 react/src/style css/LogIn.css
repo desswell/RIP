@@ -13,6 +13,38 @@
     background:rgba(15, 15, 15, 1);
 }
 
+.buttonStyleDel {
+    width: 422px;
+    height: 60px;
+    background: linear-gradient(to bottom, #ff0f54 0%, #ffffcc 100%);
+    border-radius: 14px;
+    color:#606060;
+    font-size: 20px;
+    font-weight: 400;
+    border: 3px solid rgb(95, 21, 138);
+    margin-top:5px;
+}
+
+.buttonStyleDel:active {
+    background:rgba(15, 15, 15, 1);
+}
+
+.buttonStyleUpload {
+    width: 422px;
+    height: 60px;
+    background: linear-gradient(to bottom, #23f60a 0%, #ffffcc 100%);
+    border-radius: 14px;
+    color:#606060;
+    font-size: 20px;
+    font-weight: 400;
+    border: 3px solid rgb(95, 21, 138);
+    margin-top:5px;
+}
+
+.buttonStyleUpload:active {
+    background:rgba(15, 15, 15, 1);
+}
+
 .RegWrapper {
     display:flex;
     align-items: center;
